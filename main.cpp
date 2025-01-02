@@ -18,8 +18,7 @@ int main()
     const float mapScale {4.0f};
 
 
-    Character knight;
-    knight.setScreenPos(windowDimensions[0], windowDimensions[1]);
+    Character knight {windowDimensions[0], windowDimensions[1]};
 
     // Game logic loop
     SetTargetFPS(60);

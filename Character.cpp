@@ -1,19 +1,17 @@
 #include "Character.h"
 #include "raymath.h"
 
-Character::Character()
+Character::Character(int windowWidth, int windowHeight)
 {
     width = texture.width / maxFrames;
     height = texture.height;
-}
 
-void Character::setScreenPos(int windowWidth, int windowHeight)
-{
     screenPos = {
         (float)windowWidth / 2.0f - 4.0f * (0.5f * width), // X pos
         (float)windowHeight / 2.0f - 4.0f * (0.5f * height)       // Y pos
     };
 }
+
 
 void Character::undoMovement()
 {
