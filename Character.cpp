@@ -7,8 +7,8 @@ Character::Character(int windowWidth, int windowHeight)
     height = texture.height;
 
     screenPos = {
-        (float)windowWidth / 2.0f - scale * (0.5f * width), // X pos
-        (float)windowHeight / 2.0f - scale * (0.5f * height)       // Y pos
+        static_cast<float>(windowWidth) / 2.0f - scale * (0.5f * width), // X pos
+        static_cast<float>(windowHeight) / 2.0f - scale * (0.5f * height)       // Y pos
     };
 }
 
