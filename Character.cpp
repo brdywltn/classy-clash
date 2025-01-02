@@ -7,8 +7,8 @@ Character::Character(int windowWidth, int windowHeight)
     height = texture.height;
 
     screenPos = {
-        (float)windowWidth / 2.0f - 4.0f * (0.5f * width), // X pos
-        (float)windowHeight / 2.0f - 4.0f * (0.5f * height)       // Y pos
+        (float)windowWidth / 2.0f - scale * (0.5f * width), // X pos
+        (float)windowHeight / 2.0f - scale * (0.5f * height)       // Y pos
     };
 }
 
@@ -58,6 +58,6 @@ void Character::tick(float deltaTime)
 
     // Draw the character
     Rectangle sourceRect{frame * width, 0.f, rightLeft * width, height};
-    Rectangle destRect{screenPos.x, screenPos.y, 4.0f * width, 4.0f * height};
+    Rectangle destRect{screenPos.x, screenPos.y, scale * width, scale * height};
     DrawTexturePro(texture, sourceRect, destRect, Vector2{}, 0.f, WHITE);
 }
