@@ -12,12 +12,6 @@ Character::Character(int windowWidth, int windowHeight)
     };
 }
 
-
-void Character::undoMovement()
-{
-    worldPos = worldPosLastFrame;
-}
-
 void Character::tick(float deltaTime)
 {
     worldPosLastFrame = worldPos;
@@ -60,4 +54,19 @@ void Character::tick(float deltaTime)
     Rectangle sourceRect{frame * width, 0.f, rightLeft * width, height};
     Rectangle destRect{screenPos.x, screenPos.y, scale * width, scale * height};
     DrawTexturePro(texture, sourceRect, destRect, Vector2{}, 0.f, WHITE);
+}
+
+void Character::undoMovement()
+{
+    worldPos = worldPosLastFrame;
+}
+
+Rectangle Character::getCollisionRec()
+{
+    return Rectangle{
+        screenPos.x,
+        screenPos.y,
+        width * scale,
+        height * scale,
+    };
 }
