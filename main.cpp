@@ -39,6 +39,8 @@ int main()
         LoadTexture("characters/goblin_run_spritesheet.png")
     };
 
+    goblin.setTarget(&knight);
+
 
     // Game logic loop
     SetTargetFPS(60);
@@ -78,7 +80,9 @@ int main()
                 knight.undoMovement(); 
         }
 
+        
         goblin.tick(GetFrameTime());
+        
 
         EndDrawing();
     }

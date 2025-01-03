@@ -12,21 +12,10 @@ Enemy::Enemy(Vector2 pos, Texture2D idle_texture, Texture2D run_texture)
 
 void Enemy::tick(float deltaTime)
 {
-    worldPosLastFrame = worldPos;
+    BaseCharacter::tick(deltaTime);
+}
 
-    // Update animation frame
-    runningTime += deltaTime;
-
-    if (runningTime >= updateTime)
-    {
-        frame++;
-        runningTime = 0.f;
-        if (frame > maxFrames)
-            frame = 0.f;
-    }
-
-    // Draw the character
-    Rectangle sourceRect{frame * width, 0.f, rightLeft * width, height};
-    Rectangle destRect{screenPos.x, screenPos.y, scale * width, scale * height};
-    DrawTexturePro(texture, sourceRect, destRect, Vector2{}, 0.f, WHITE);
+void Enemy::setTarget(Character* target)
+{
+    current_target = target;
 }
