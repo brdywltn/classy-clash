@@ -11,4 +11,5 @@ public:
     virtual Vector2 getScreenPos() override;
 private:
     Character* current_target;
+    float damagePerSec{10.f};
 };
