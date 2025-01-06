@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Prop.h"
 #include "Enemy.h"
+#include <string>
 
 int main()
 {
@@ -25,6 +26,7 @@ int main()
         windowDimensions[0], 
         windowDimensions[1]
     };
+    
 
     Prop props[2]
     {
@@ -78,6 +80,20 @@ int main()
             // If there's a collision, undo the knight's movement
             if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPos()), knight.getCollisionRec())) 
                 knight.undoMovement(); 
+        }
+
+        
+        if (!knight.getAlive()) // Chracter not alive
+        {
+            DrawText("Game Over!", 55.f, 55.f, 40, RED);
+            EndDrawing();
+            continue;
+        }
+        else // Character alived
+        {
+            std::string knightsHealth = "Health: ";
+            knightsHealth.append(std::to_string(knight.getHealth()), 0, 5);
+            DrawText(knightsHealth.c_str(), 55.f, 45.f, 40, RED);          
         }
 
         
