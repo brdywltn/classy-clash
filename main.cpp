@@ -36,13 +36,24 @@ int main()
     
     Enemy goblin 
     {
-        Vector2{}, 
+        Vector2{800.f, 300.f}, 
         LoadTexture("characters/goblin_idle_spritesheet.png"), 
         LoadTexture("characters/goblin_run_spritesheet.png")
     };
 
-    goblin.setTarget(&knight);
+    Enemy slime
+    {
+        Vector2{500.f, 700.f},
+        LoadTexture("characters/slime_idle_spritesheet.png"), 
+        LoadTexture("characters/slime_run_spritesheet.png")
+    };
 
+    Enemy* enemies[] {
+        &goblin,
+        &slime,
+    };
+
+    goblin.setTarget(&knight);
 
     // Game logic loop
     SetTargetFPS(60);
@@ -96,7 +107,12 @@ int main()
             DrawText(knightsHealth.c_str(), 55.f, 45.f, 40, RED);          
         }
 
-        
+        for (auto enemy: enemies)
+        {
+            enemy->setTarget(&knight);
+            enemy->tick(GetFrameTime());
+        }
+
         goblin.tick(GetFrameTime());
         
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -105,6 +121,17 @@ int main()
             {
                 goblin.setAlive(false);
             }
+
+            // loop through enemies and check collision recs of enemy + knight weapon
+            for (auto enemy: enemies)
+            {
+                if (CheckCollisionRecs(enemy->getCollisionRec(), knight.getWeaponCollisionRec()))
+                {
+                    // set alive to false 
+                    enemy->setAlive(false);
+                }
+            }
+            
         }
 
         EndDrawing();
