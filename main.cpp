@@ -117,11 +117,6 @@ int main()
         
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
-            if (CheckCollisionRecs(goblin.getCollisionRec(), knight.getWeaponCollisionRec()))
-            {
-                goblin.setAlive(false);
-            }
-
             // loop through enemies and check collision recs of enemy + knight weapon
             for (auto enemy: enemies)
             {
@@ -131,7 +126,6 @@ int main()
                     enemy->setAlive(false);
                 }
             }
-            
         }
 
         EndDrawing();
