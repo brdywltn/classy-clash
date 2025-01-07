@@ -53,7 +53,10 @@ int main()
         &slime,
     };
 
-    goblin.setTarget(&knight);
+    for (auto enemy: enemies)
+    {
+        enemy->setTarget(&knight);
+    }
 
     // Game logic loop
     SetTargetFPS(60);
@@ -109,11 +112,8 @@ int main()
 
         for (auto enemy: enemies)
         {
-            enemy->setTarget(&knight);
             enemy->tick(GetFrameTime());
         }
-
-        goblin.tick(GetFrameTime());
         
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
